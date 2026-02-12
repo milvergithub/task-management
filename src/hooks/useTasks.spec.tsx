@@ -67,6 +67,8 @@ describe('useTasks hooks', () => {
                 wrapper: createWrapper(),
             })
 
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             const res = await result.current.mutateAsync('New Task')
 
             expect(res).toEqual(created)

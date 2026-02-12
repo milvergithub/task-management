@@ -71,6 +71,8 @@ export const tasksApi = {
         await delay()
 
         const newTask: Task = {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             id: crypto.randomUUID(),
             ...task,
         }

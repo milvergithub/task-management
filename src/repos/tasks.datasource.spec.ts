@@ -95,10 +95,10 @@ describe('tasksDataSource', () => {
             const created: Task = { id: 'new', title: 'Write tests', completed: false }
             vi.mocked(tasksApi.create).mockResolvedValue(created)
 
-            const result = await tasksDataSource.create('Write tests')
+            const result = await tasksDataSource.create({title: 'Write tests'} as Task)
 
             expect(tasksApi.create).toHaveBeenCalledTimes(1)
-            expect(tasksApi.create).toHaveBeenCalledWith('Write tests')
+            expect(tasksApi.create).toHaveBeenCalledWith({ title: 'Write tests'} as Task)
             expect(result).toBe(created)
         })
 
@@ -106,8 +106,8 @@ describe('tasksDataSource', () => {
             const err = new Error('create failed')
             vi.mocked(tasksApi.create).mockRejectedValue(err)
 
-            await expect(tasksDataSource.create('X')).rejects.toBe(err)
-            expect(tasksApi.create).toHaveBeenCalledWith('X')
+            await expect(tasksDataSource.create({ title: 'X'} as Task)).rejects.toBe(err)
+            expect(tasksApi.create).toHaveBeenCalledWith({ title: 'X'} as Task)
         })
     })
 
