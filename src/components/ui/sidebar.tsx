@@ -1,6 +1,5 @@
-import {ChevronDown, ChevronFirst, ChevronLast, type LucideIcon, MoreVertical} from "lucide-react";
+import { ChevronDown, ChevronFirst, ChevronLast, LogOut, type LucideIcon } from "lucide-react";
 import logo from "@/assets/logo.svg";
-import profile from "@/assets/logo.svg";
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import {cn} from "@/lib/utils.ts";
@@ -39,19 +38,8 @@ export default function Sidebar({ children }: SidebarProps) {
           <ul className="flex-1 px-3">{children}</ul>
         </SidebarContext.Provider>
 
-        <div className="border-t border-sidebar-foreground flex p-3">
-          <img src={profile} className="w-10 h-10 rounded-md" />
-          <div
-            className={`flex justify-between items-center overflow-hidden transition-all ${
-              expanded ? "w-52 ml-3" : "w-0"
-            } `}
-          >
-            <div className="leading-4">
-              <h4 className="font-semibold">constGenius</h4>
-              <span className="text-xs text-sidebar-foreground">constgenius@gmail.com</span>
-            </div>
-            <MoreVertical size={20} />
-          </div>
+        <div className="border-t border-border flex p-3 flex-row justify-end">
+            <LogOut className="text-background" />
         </div>
       </nav>
     </aside>
