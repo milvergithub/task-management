@@ -1,10 +1,13 @@
-import { LoginPage } from '@/pages/auth/login.page.tsx';
-import { useAuthStore } from '@/store/auth.store.ts';
-import { render, waitFor } from "@testing-library/react"
-import { screen } from "@testing-library/dom"
+import { LoginPage } from "@/pages/auth/login.page.tsx"
+import { useAuthStore } from "@/store/auth.store.ts"
+import { render, waitFor, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { vi } from "vitest"
 import { BrowserRouter } from "react-router-dom"
+
+vi.mock("@/components/ui/sonner.tsx", () => ({
+    Toaster: () => null,
+}))
 
 vi.mock("@/store/auth.store.ts", () => ({
     useAuthStore: vi.fn(),
@@ -14,7 +17,8 @@ describe("LoginPage", () => {
     const mockLogin = vi.fn()
 
     beforeEach(() => {
-        (useAuthStore as any).mockReturnValue({
+        vi.clearAllMocks()
+        ;(useAuthStore as any).mockReturnValue({
             login: mockLogin,
         })
     })
@@ -23,7 +27,7 @@ describe("LoginPage", () => {
         render(
             <BrowserRouter>
                 <LoginPage />
-            </BrowserRouter>
+            </BrowserRouter>,
         )
 
         const titles = screen.getAllByText(/sign in/i)
@@ -38,10 +42,10 @@ describe("LoginPage", () => {
         render(
             <BrowserRouter>
                 <LoginPage />
-            </BrowserRouter>
+            </BrowserRouter>,
         )
 
-        userEvent.click(screen.getByRole("button", { name: /sign in/i }))
+        await userEvent.click(screen.getByRole("button", { name: /sign in/i }))
 
         expect(await screen.findAllByText(/is required|valid email/i)).toHaveLength(2)
     })
@@ -50,7 +54,7 @@ describe("LoginPage", () => {
         render(
             <BrowserRouter>
                 <LoginPage />
-            </BrowserRouter>
+            </BrowserRouter>,
         )
 
         const emailInput = screen.getByLabelText(/email/i) as HTMLInputElement
@@ -62,7 +66,7 @@ describe("LoginPage", () => {
         expect(emailInput.value).toBe("test@example.com")
         expect(passwordInput.value).toBe("123456")
 
-        await userEvent.click(screen.getByRole("button", { name: /reset/i }));
+        await userEvent.click(screen.getByRole("button", { name: /reset/i }))
         await waitFor(() => {
             expect(emailInput.value).toBe("")
             expect(passwordInput.value).toBe("")
@@ -79,15 +83,11 @@ describe("LoginPage", () => {
         render(
             <BrowserRouter>
                 <LoginPage />
-            </BrowserRouter>
+            </BrowserRouter>,
         )
 
-        const emailInput = screen.getByLabelText(/email/i)
-        const passwordInput = screen.getByLabelText(/password/i)
-
-        await userEvent.type(emailInput, "wrong@example.com")
-        await userEvent.type(passwordInput, "wrongpass")
-
+        await userEvent.type(screen.getByLabelText(/email/i), "wrong@example.com")
+        await userEvent.type(screen.getByLabelText(/password/i), "wrongpass")
         await userEvent.click(screen.getByRole("button", { name: /sign in/i }))
     })
 })
