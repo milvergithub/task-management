@@ -10,7 +10,7 @@ interface Props
   text: string;
 }
 
-export function AddButton({ text, size, variant = "outlineAccent", ...props }: Props) {
+export function AddButton({ text, size, variant = "default", ...props }: Props) {
   return (
     <Button {...props} size={size} variant={variant}>
       <Icon icon={CirclePlus} strokeWidth={2} className="text-accent" />

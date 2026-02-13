@@ -2,6 +2,8 @@
 
 A modern **Task Management** web application built with **React 19**, **TypeScript**, **Vite**, and a clean, scalable frontend architecture. The app allows users to authenticate, manage tasks (create, edit, delete, complete), and navigate efficiently with pagination and dialogs.
 
+This project is suitable as a **technical challenge**, **portfolio project**, or **production-ready starter**.
+
 ---
 
 ## 🚀 Features
@@ -64,7 +66,7 @@ A modern **Task Management** web application built with **React 19**, **TypeScri
 ### Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/milvergithub/task-management.git
 cd task-management
 ```
 
@@ -213,3 +215,21 @@ Authentication is simulated:
 ## 📄 License
 
 This project is provided for educational and demonstration purposes.
+
+---
+
+## Demo
+
+A live demo of the application is available at:
+
+👉 **[https://task-management-rkym.onrender.com/](https://task-management-rkym.onrender.com/)**
+
+You can use this demo to explore the main features such as authentication, task creation, editing, deletion, and pagination.
+
+## Repository
+
+The source code for this project is available on GitHub:
+
+👉 **[https://github.com/milvergithub/task-management](https://github.com/milvergithub/task-management)**
+
+Feel free to clone, explore, and adapt the project for learning or evaluation purposes.
