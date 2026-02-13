@@ -1,3 +1,5 @@
+import { Toaster } from '@/components/ui/sonner.tsx';
+import { mockUsers } from '@/mocks/auth.mock.ts';
 import { type LoginFormValues, loginSchema } from '@/pages/auth/loginSchema.ts';
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Controller, useForm } from "react-hook-form"
@@ -35,24 +37,31 @@ export function LoginPage() {
     })
 
     async function onSubmit(data: LoginFormValues) {
-        console.log(data)
         try {
-            // Simulate API call
-            await new Promise((res) => setTimeout(res, 800))
+            // Simulate API delay
+            await new Promise(res => setTimeout(res, 800))
 
-            // Fake JWT token
-            login("fake-jwt-token-123")
+            const user = mockUsers.find(
+                u => u.email === data.email && u.password === data.password
+            )
 
-            toast.success("Successfully signed in")
+            if (!user) {
+                throw new Error('Invalid credentials')
+            }
 
-            navigate("/tasks")
+            // Store token
+            login(user.token)
+
+            toast.success('Successfully signed in')
+            navigate('/tasks')
         } catch {
-            toast.error("Invalid credentials")
+            toast.error('Invalid email or password')
         }
     }
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-muted px-4">
+            <Toaster />
             <Card className="w-full sm:max-w-md">
                 <CardHeader>
                     <CardTitle>Sign in</CardTitle>

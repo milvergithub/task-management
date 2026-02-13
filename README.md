@@ -66,7 +66,7 @@ This project is suitable as a **technical challenge**, **portfolio project**, or
 ### Clone the repository
 
 ```bash
-git clone https://github.com/milvergithub/task-management.git
+git clone <repository-url>
 cd task-management
 ```
 
@@ -218,6 +218,10 @@ This project is provided for educational and demonstration purposes.
 
 ---
 
+## 👋 Author
+
+Built with ❤️ using modern React best practices.
+
 ## Demo
 
 A live demo of the application is available at:
@@ -233,3 +237,21 @@ The source code for this project is available on GitHub:
 👉 **[https://github.com/milvergithub/task-management](https://github.com/milvergithub/task-management)**
 
 Feel free to clone, explore, and adapt the project for learning or evaluation purposes.
+
+## Demo Credentials
+
+This project uses a mocked authentication system for demo and development purposes.
+
+You can sign in using any of the following credentials:
+
+### Admin User
+
+* **Email:** `admin@example.com`
+* **Password:** `admin123`
+
+### Regular User
+
+* **Email:** `user@example.com`
+* **Password:** `user123`
+
+> ⚠️ These credentials are **mocked only** and intended for demonstration purposes. No real authentication or backend is involved.
